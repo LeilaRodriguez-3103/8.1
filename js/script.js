@@ -22,14 +22,13 @@ function showData(dataArray) {
 fetch(DATA_URL)
   .then(response => {
     if (!response.ok) {
-      throw new Error('Error en la red');
+      throw new Error('Network response was not ok');
     }
-    return response.json(); // Convierte la respuesta a JSON
+    return response.json(); // Convertimos la respuesta a JSON
   })
   .then(data => {
-    showData(data); // Llama a la función para mostrar los datos
+    showData(data.students); // Pasamos el array de estudiantes a la función showData
   })
   .catch(error => {
-    console.error('Error al cargar los datos:', error);
-    container.innerHTML = '<p>Error al cargar los datos.</p>'; // Mensaje de error en caso de fallo
+    console.error('There was a problem with the fetch operation:', error);
   });
