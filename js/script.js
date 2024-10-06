@@ -21,16 +21,7 @@ function showData(dataArray) {
 
 // Código para realizar el fetch al archivo con los datos
 fetch(DATA_URL)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json(); // Convertimos la respuesta a JSON
-  })
-  .then(data => {
-    showData(data.students); // Pasamos el array de estudiantes a la función showData
-  })
-  .catch(error => {
-    console.error('There was a problem with the fetch operation:', error);
-    container.innerHTML = '<p>Error al cargar los datos.</p>'; // Mensaje de error en el contenedor
-  });
+  .then(response => response.json())
+  // .then(json => console.log(json.students))
+  .then(json => showData(json.students))
+  .catch(error => console.log('Solcitud fallida',error));
